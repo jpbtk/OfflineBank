@@ -1,0 +1,9 @@
+name: Offlinebank
+version: '${project.version}'
+main: a.offlinebank.Offlinebank
+api-version: 1.19
+commands:
+  ob:
+    description: offlinebank
+    usage: /<command>
+    aliases: [bank]

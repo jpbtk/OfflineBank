@@ -1,0 +1,4 @@
+db:
+  url: "jdbc:mysql://localhost/OfflineBank?useSSL=false"
+  user: "root"
+  password: "password"

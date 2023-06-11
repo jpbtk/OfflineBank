@@ -1,0 +1,9 @@
+name: Offlinebank
+version: '1.0-SNAPSHOT'
+main: a.offlinebank.Offlinebank
+api-version: 1.19
+commands:
+  ob:
+    description: offlinebank
+    usage: /<command>
+    aliases: [bank]
