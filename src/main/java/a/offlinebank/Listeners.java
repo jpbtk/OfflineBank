@@ -9,6 +9,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.block.Sign;
 
 import java.sql.*;
@@ -24,6 +25,14 @@ public class Listeners implements Listener {
             plugin.getConfig().getString("db.user"),
             plugin.getConfig().getString("db.password")
     );
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) throws SQLException {
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM offlinebank WHERE uuid = '" + event.getPlayer().getUniqueId() + "'");
+        if (!rs.next()) {
+            stmt.executeUpdate("INSERT INTO offlinebank (uuid, balance) VALUES ('" + event.getPlayer().getUniqueId() + "', 0)");
+        }
+    }
     @EventHandler
     public void onPlayerInteractevent(PlayerInteractEvent event) throws SQLException {
         Player player = event.getPlayer();
